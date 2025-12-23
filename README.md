@@ -5,7 +5,7 @@ The first step is to partition the disk that will contain our Linux system. When
 
 In the VM we create an additional hard drive of 20GB which we will use for our system. This will most likely be /dev/sdb.
 
-We use fdisk to partition the disk, all the commands are in Scripts/create-partitions.txt. This is what our partitions will look like:
+We use fdisk to partition the disk, all the commands are in Scripts/create-partitions.sh. This is what our partitions will look like:
 | 1: 512M, EFI mounted at /boot/efi | 2: 2G, Linux Swap | 3: 15G, Linux System mounted at / |
 
 ```
