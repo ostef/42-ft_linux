@@ -39,3 +39,23 @@ Results should be:
 ## Steps to do upon host boot
 `export LFS=/mnt/lfs`
 Execute Scripts/mount-filesystems.sh (use sudo -E to preserve env)
+
+## Missing packages
+There are a number of packages that are not available for download anymore. wget-list have been modified accordingly after finding other places to find packages.
+
+The following packages were causing problems:
+* acl-2.2.53.tar.gz
+* attr-2.4.48.tar.gz
+* expat-2.2.6.tar.bz2
+* lfs-bootscripts-20180820.tar.bz2
+* libpipeline-1.5.1.tar.gz
+* man-pages-4.16.tar.xz
+* psmisc-23.2.tar.xz
+* sysvinit-2.93.tar.xz
+* vim-8.1.tar.bz2
+* zlib-1.2.11.tar.xz, this one has been replaced by zlib-1.2.11.tar.gz so the md5sum does not match
+* bzip2-1.0.6-install_docs-1.patch
+* coreutils-8.30-i18n-1.patch
+* glibc-2.29-fhs-1.patch
+* kbd-2.0.4-backspace-1.patch
+* sysvinit-2.93-consolidated-1.patch

@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [ "$(echo $LFS)" = "" ]; then
-	printf "ERROR: \$LFS is not set\n"
+	echo "ERROR: \$LFS is not set"
 	exit 1
 fi
 
