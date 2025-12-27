@@ -11,7 +11,10 @@ Scripts/mount-filesystems.sh || exit 1
 
 mkdir -v $LFS/sources || exit 1
 chmod -v a+wt $LFS/sources || exit 1
+
 mkdir -v $LFS/tools || exit 1
 ln -sv $LFS/tools /tools || exit 1
+
+Scripts/download-packages.sh || exit 1
 
 export MAKEFLAGS="-j 4"
