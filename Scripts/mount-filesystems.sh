@@ -6,5 +6,5 @@ if [ "$(echo $LFS)" = "" ]; then
 fi
 
 mount --mkdir /dev/sdb2 $LFS
-mount --mkdir /dev/sdb1 $LFS/boot/efi
+mount --mkdir /dev/sdb1 $LFS/boot
 swapon -v /dev/sdb3
