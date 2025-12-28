@@ -16,4 +16,5 @@ chroot "$LFS" /tools/bin/env -i                   \
     TERM="$TERM"                                  \
     PS1='(lfs chroot) \u:\w\$ '                   \
     PATH=/bin:/usr/bin:/sbin:/usr/sbin:/tools/bin \
+    MAKE_JOBS="$MAKE_JOBS"                        \
     /tools/bin/bash --login +h
