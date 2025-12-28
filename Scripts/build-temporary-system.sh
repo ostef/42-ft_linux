@@ -8,7 +8,21 @@ then
     exit 1
 fi
 
+# Total build time is 42.7 SBU
+
+start_ns=$(date +%s.%N)
+
 Scripts/Build-Temp/binutils-pass1.sh    || exit 1
+
+end_ns=$(date +%s.%N)
+
+elapsed=$(echo "$end_ns - $start_ns" | bc)
+approximate_build_time=$(echo "$elapsed * 42.7" | bc -l)
+
+printf "Building Binutils - pass 1 took 1 SBU = %s seconds\n" "$elapsed"
+printf "Approximate expected build time: 42.7 SBU = %s\n" "$approximate_build_time"
+sleep 6
+
 Scripts/Build-Temp/gcc-pass1.sh         || exit 1
 Scripts/Build-Temp/linux-api-headers.sh || exit 1
 Scripts/Build-Temp/glibc.sh             || exit 1
@@ -39,3 +53,5 @@ Scripts/Build-Temp/sed.sh               || exit 1
 Scripts/Build-Temp/tar.sh               || exit 1
 Scripts/Build-Temp/texinfo.sh           || exit 1
 Scripts/Build-Temp/xz.sh                || exit 1
+
+sudo -E chown -R root:root $LFS/tools
