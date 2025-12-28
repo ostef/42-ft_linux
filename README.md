@@ -4,46 +4,22 @@ This project is a LFS project. The requirements of this project are satisfied by
 ## Pitfalls
 * Building the packages must be done using the LFS user, not root (make sure the LFS user has access to $LFS/tools and al)
 * Newer versions of make do not play well with older versions of glibc's build system. To downgrade to version 4.3, get it from wget https://ftp.gnu.org/gnu/make/make-4.3.tar.gz, build and install it and add /usr/local/bin to the PATH.
+* There are a number of packages that are not available for download anymore at the default URLs. wget-list have been modified to use Oregon State University Open Source Lab Mirrors instead.
 
-## Partitioning the disk
-The first step is to partition the disk that will contain our Linux system. When installing a Linux distribution, this is often done by the installer, but we are going to do this by hand.
-
-In the VM we create an additional hard drive of 20GB which we will use for our system. This will most likely be /dev/sdb.
-
-We use fdisk to partition the disk, all the commands are in Scripts/create-partitions.sh. This is what our partitions will look like:
-| 1: 512M, EFI mounted at /boot/efi | 2: 2G, Linux Swap | 3: 15G, Linux System mounted at / |
-
+## Steps
 ```
-g       # Create a new empty GPT partition table
-n       # Create a new partition (this will be our EFI boot partition for grub)
-        # Partition number (empty)
-        # First sector (empty)
-+512M   # Last sector
-t       # Change the type of a partition (default is Linux filesystem)
-1       # Partition number
-1       # New partition type (1 is for EFI System)
-n       # Create a new partition (this will be our primary partition)
-        # Partition number (empty)
-        # First sector (empty)
-+15G    # Last sector
-n       # Create a new partition (this will be our swap partition)
-        # Partition number (empty)
-        # First sector (empty)
-+2G     # Last sector
-t       # Change the type of a partition (default is Linux filesystem)
-1       # Partition number
-19      # New partition type (19 is for Linux Swap)
-p       # Print partitions
-w       # Write all changes to disk
+$> sudo -E Scripts/prepare-system-files.sh
+$> sudo -E Scripts/download-packages.sh
+$> Scripts/build-temporary-system.sh
+$> sudo -E Scripts/prepare-virtual-system.sh
+$> sudo -E Scripts/copy-repository.sh
+$> sudo -E Scripts/enter-virtual-system.sh
+$> /tools/bin/bash /42-ft_linux/Scripts/create-essential-files.sh
+$>
 ```
-Results should be:
-/dev/sdb1 -> EFI boot partition
-/dev/sdb2 -> Main Linux partition
-/dev/sdb3 -> Swap partition
-
-## Steps to do upon host boot
-`export LFS=/mnt/lfs`
-Execute Scripts/mount-filesystems.sh (use sudo -E to preserve env)
-
-## Missing packages
-There are a number of packages that are not available for download anymore at the default URLs. wget-list have been modified to use Oregon State University Open Source Lab Mirrors instead.
+### Upon (re)boot
+Depends on your advancement in the steps above:
+```
+$> sudo -E Scripts/mount-filesystems.h
+$> sudo -E Scripts/enter-virtual-system.sh
+```
