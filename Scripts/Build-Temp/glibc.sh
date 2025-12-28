@@ -22,11 +22,11 @@ cd build
     --host=$LFS_TGT                    \
     --build=$(../scripts/config.guess) \
     --enable-kernel=3.2                \
-    --with-headers=/tools/include
+    --with-headers=/tools/include || exit 1
 
-# Compilation can fail when building in parallel
-make -j1 || exit 1
-make -j1 install || exit 1
+# Compilation can fail when building in parallel, do not add -j$MAKE_JOBS
+make || exit 1
+make install || exit 1
 
 cd ../..
 rm -rf glibc-2.29

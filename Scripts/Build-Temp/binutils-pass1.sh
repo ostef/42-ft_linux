@@ -22,10 +22,10 @@ cd build
     --with-lib-path=/tools/lib \
     --target=$LFS_TGT \
     --disable-nls \
-    --disable-werror
+    --disable-werror || exit 1
 
-make || exit 1
-make install || exit 1
+make -j$MAKE_JOBS || exit 1
+make -j$MAKE_JOBS install || exit 1
 
 cd ../..
 rm -rf binutils-2.32

@@ -11,3 +11,19 @@ apt install texinfo -y # For makeinfo
 
 rm -f /bin/sh
 ln -s bash /bin/sh
+
+# Newer versions of make cause problems when compiling glibc, so we downgrade
+pushd ~/Downloads
+
+wget https://ftp.gnu.org/gnu/make/make-4.3.tar.gz
+tar -xf make-4.3.tar.gz
+cd make-4.3
+
+./configure || exit 1
+make || exit 1
+make install || exit 1
+cd ..
+
+rm -rf make-4.3
+
+popd

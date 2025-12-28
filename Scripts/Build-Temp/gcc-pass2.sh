@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo "Building GCC - Pass 1"
+echo "Building GCC - Pass 2"
 
 if [ "$EUID" -eq 0 ]
 then
@@ -21,6 +21,8 @@ mv -v gmp-6.1.2 gmp
 tar -xf ../mpc-1.1.0.tar.gz
 mv -v mpc-1.1.0 mpc
 
+cat gcc/limitx.h gcc/glimits.h gcc/limity.h > `dirname $($LFS_TGT-gcc -print-libgcc-file-name)`/include-fixed/limits.h
+
 for file in gcc/config/{linux,i386/linux{,64}}.h
 do
     cp -uv $file{,.orig}
@@ -38,31 +40,24 @@ sed -e '/m64=/s/lib64/lib/' -i.orig gcc/config/i386/t-linux64
 mkdir -v build
 cd build
 
+CC=$LFS_TGT-gcc                                    \
+CXX=$LFS_TGT-g++                                   \
+AR=$LFS_TGT-ar                                     \
+RANLIB=$LFS_TGT-ranlib                             \
 ../configure                                       \
-    --target=$LFS_TGT                              \
     --prefix=/tools                                \
-    --with-glibc-version=2.11                      \
-    --with-sysroot=$LFS                            \
-    --with-newlib                                  \
-    --without-headers                              \
     --with-local-prefix=/tools                     \
     --with-native-system-header-dir=/tools/include \
-    --disable-nls                                  \
-    --disable-shared                               \
+    --enable-languages=c,c++                       \
+    --disable-libstdcxx-pch                        \
     --disable-multilib                             \
-    --disable-decimal-float                        \
-    --disable-threads                              \
-    --disable-libatomic                            \
-    --disable-libgomp                              \
-    --disable-libmpx                               \
-    --disable-libquadmath                          \
-    --disable-libssp                               \
-    --disable-libvtv                               \
-    --disable-libstdcxx                            \
-    --enable-languages=c,c++ || exit 1
+    --disable-bootstrap                            \
+    --disable-libgomp || exit 1
 
 make -j$MAKE_JOBS || exit 1
 make -j$MAKE_JOBS install || exit 1
+
+ln -sv gcc /tools/bin/cc
 
 cd ../..
 rm -rf gcc-8.2.0
@@ -71,7 +66,6 @@ popd
 
 # Sanity check
 echo 'int main(){}' > dummy.c
-/tools/bin/$LFS_TGT-gcc dummy.c || exit 1
+cc dummy.c || exit 1
 readelf -l a.out | grep ': /tools' || exit 1
 rm -vf dummy.c a.out
-

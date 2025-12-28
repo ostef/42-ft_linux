@@ -24,10 +24,10 @@ cd build
     --disable-nls               \
     --disable-libstdcxx-threads \
     --disable-libstdcxx-pch     \
-    --with-gxx-include-dir=/tools/$LFS_TGT/include/c++/8.2.0
+    --with-gxx-include-dir=/tools/$LFS_TGT/include/c++/8.2.0 || exit 1
 
-make || exit 1
-make install || exit 1
+make -j$MAKE_JOBS || exit 1
+make -j$MAKE_JOBS install || exit 1
 
 cd ../..
 rm -rf gcc-8.2.0
