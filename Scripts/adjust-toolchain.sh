@@ -23,27 +23,37 @@ readelf -l a.out | grep ': /lib' || exit 1
 # @Todo: automatically check the output
 
 grep -o '/usr/lib.*/crt[1in].*succeeded' dummy.log
-# Output should be:
-# /usr/lib/../lib/crt1.o succeeded
-# /usr/lib/../lib/crti.o succeeded
-# /usr/lib/../lib/crtn.o succeeded
+echo "================"
+echo "Output should be:"
+echo "/usr/lib/../lib/crt1.o succeeded"
+echo "/usr/lib/../lib/crti.o succeeded"
+echo "/usr/lib/../lib/crtn.o succeeded"
+echo "================"
 
 grep -B1 '^ /usr/include' dummy.log
-# Output should be:
-# #include <...> search starts here:
-# /usr/include
+echo "================"
+echo "Output should be:"
+echo "#include <...> search starts here:"
+echo "/usr/include"
+echo "================"
 
 grep 'SEARCH.*/usr/lib' dummy.log |sed 's|; |\n|g'
-# Output should be:
-# SEARCH_DIR("/usr/lib")
-# SEARCH_DIR("/lib")
+echo "================"
+echo "Output should contain:"
+echo "SEARCH_DIR(\"/usr/lib\")"
+echo "SEARCH_DIR(\"/lib\")"
+echo "================"
 
 grep "/lib.*/libc.so.6 " dummy.log
-# Output should be:
-# attempt to open /lib/libc.so.6 succeeded
+echo "================"
+echo "Output should be:"
+echo "attempt to open /lib/libc.so.6 succeeded"
+echo "================"
 
 grep found dummy.log
-# Output should be:
-# found ld-linux-x86-64.so.2 at /lib/ld-linux-x86-64.so.2
+echo "================"
+echo "Output should be:"
+echo "found ld-linux-x86-64.so.2 at /lib/ld-linux-x86-64.so.2"
+echo "================"
 
 rm -v dummy.c a.out dummy.log
