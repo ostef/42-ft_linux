@@ -19,8 +19,8 @@ end_ns=$(date +%s.%N)
 elapsed=$(echo "$end_ns - $start_ns" | bc)
 approximate_build_time=$(echo "$elapsed * 42.7" | bc -l)
 
-printf "Building Binutils - pass 1 took 1 SBU = %s seconds\n" "$elapsed"
-printf "Approximate expected build time: 42.7 SBU = %s\n" "$approximate_build_time"
+printf "\n======== Building Binutils - pass 1 took 1 SBU = %s seconds ========\n" "$elapsed"
+printf "======== Approximate expected build time: 42.7 SBU = %s ========\n\n" "$approximate_build_time"
 sleep 6
 
 Scripts/Build-Temp/gcc-pass1.sh         || exit 1
