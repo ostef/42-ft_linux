@@ -10,7 +10,7 @@ This project is a LFS project. The requirements of this project are satisfied by
 ```
 $> sudo -E Scripts/prepare-system-files.sh
 $> sudo -E Scripts/download-packages.sh
-$> Scripts/build-temporary-system.sh
+$> Scripts/build-temporary-system-tools.sh
 $> sudo -E Scripts/prepare-virtual-system.sh
 $> sudo -E Scripts/copy-repository.sh
 $> sudo -E Scripts/enter-virtual-system.sh
