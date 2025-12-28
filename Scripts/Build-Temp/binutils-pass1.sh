@@ -1,5 +1,13 @@
 #!/bin/sh
 
+echo "Building Binutils - Pass 1"
+
+if [ "$EUID" -eq 0 ]
+then
+    echo "Do not run as root!"
+    exit 1
+fi
+
 pushd $LFS/sources
 
 rm -rf binutils-2.32
@@ -16,7 +24,10 @@ cd build
     --disable-nls \
     --disable-werror
 
-make
-make install
+make || exit 1
+make install || exit 1
+
+cd ../..
+rm -rf binutils-2.32
 
 popd

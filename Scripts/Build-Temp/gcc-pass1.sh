@@ -1,5 +1,13 @@
 #!/bin/sh
 
+echo "Building GCC - Pass 1"
+
+if [ "$EUID" -eq 0 ]
+then
+    echo "Do not run as root!"
+    exit 1
+fi
+
 pushd $LFS/sources
 
 rm -rf gcc-8.2.0
@@ -30,30 +38,33 @@ sed -e '/m64=/s/lib64/lib/' -i.orig gcc/config/i386/t-linux64
 mkdir -v build
 cd build
 
-../configure \
-    --target=$LFS_TGT \
-    --prefix=/tools \
-    --with-glibc-version=2.11 \
-    --with-sysroot=$LFS \
-    --with-newlib \
-    --without-headers \
-    --with-local-prefix=/tools \
+../configure                                       \
+    --target=$LFS_TGT                              \
+    --prefix=/tools                                \
+    --with-glibc-version=2.11                      \
+    --with-sysroot=$LFS                            \
+    --with-newlib                                  \
+    --without-headers                              \
+    --with-local-prefix=/tools                     \
     --with-native-system-header-dir=/tools/include \
-    --disable-nls \
-    --disable-shared \
-    --disable-multilib \
-    --disable-decimal-float \
-    --disable-threads \
-    --disable-libatomic \
-    --disable-libgomp \
-    --disable-libmpx \
-    --disable-libquadmath \
-    --disable-libssp \
-    --disable-libvtv \
-    --disable-libstdcxx \
+    --disable-nls                                  \
+    --disable-shared                               \
+    --disable-multilib                             \
+    --disable-decimal-float                        \
+    --disable-threads                              \
+    --disable-libatomic                            \
+    --disable-libgomp                              \
+    --disable-libmpx                               \
+    --disable-libquadmath                          \
+    --disable-libssp                               \
+    --disable-libvtv                               \
+    --disable-libstdcxx                            \
     --enable-languages=c,c++
 
-make
-make install
+make || exit 1
+make install || exit 1
+
+cd ../..
+rm -rf gcc-8.2.0
 
 popd
