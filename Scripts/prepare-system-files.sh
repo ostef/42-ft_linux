@@ -1,5 +1,16 @@
 #!/bin/sh
 
+if [ "$EUID" -ne 0 ]
+then
+    echo "ERROR: This script should be run as root!"
+    exit 1
+fi
+
+if [ "$(echo $LFS)" = "" ]; then
+	echo "ERROR: \$LFS is not set"
+	exit 1
+fi
+
 Scripts/install-required-packages.sh || exit 1
 Scripts/version-check.sh || exit 1
 Scripts/create-partitions.sh || exit 1

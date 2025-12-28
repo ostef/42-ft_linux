@@ -4,7 +4,7 @@ echo "Building DejaGNU"
 
 if [ "$EUID" -eq 0 ]
 then
-    echo "Do not run as root!"
+    echo "ERROR: Do not run as root!"
     exit 1
 fi
 
