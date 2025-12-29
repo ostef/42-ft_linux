@@ -15,10 +15,12 @@ $> sudo -E Scripts/prepare-virtual-system.sh
 $> sudo -E Scripts/copy-repository.sh
 $> sudo -E Scripts/enter-virtual-system.sh
 $> /tools/bin/bash /42-ft_linux/Scripts/create-essential-files.sh
-$>
+$> exit
+$> sudo -E Scripts/enter-virtual-system.sh
+$> sudo -E Scripts/build-system-packages.sh
 ```
-### Upon (re)boot
-Depends on your advancement in the steps above:
+### Upon reboot
+Depending on your advancement in the steps above:
 ```
 $> sudo -E Scripts/mount-filesystems.h
 $> sudo -E Scripts/enter-virtual-system.sh
