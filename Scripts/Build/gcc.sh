@@ -34,7 +34,7 @@ rm ../gcc/testsuite/g++.dg/pr83239.C
 
 # Test the results as a non priviledged user
 chown -Rv nobody .
-su nobody -s /bin/bash -c "PATH=$PATH make -k check"
+su nobody -s /bin/bash -c "PATH=$PATH make -j$MAKE_JOBS -k check"
 
 ../contrib/test_summary > /tmp/gcc-test-results
 diff /tmp/gcc-test-results /42-ft_linux/Resources/Test-Results/gcc-8.2.0
