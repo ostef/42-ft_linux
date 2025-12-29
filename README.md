@@ -1,6 +1,9 @@
 # ft_linux
 This project is a LFS project. The requirements of this project are satisfied by following LFS 8.4, which is what I did.
 
+In the .bashrc file, the MAKE_JOBS variable must be changed to match your machine's capabilities.
+In the prepare-filesystem-files.sh script, make sure your username is used for the chowns.
+
 ## Pitfalls
 * Building the packages must be done using the LFS user, not root (make sure the LFS user has access to $LFS/tools and al)
 * Newer versions of make do not play well with older versions of glibc's build system. To downgrade to version 4.3, get it from wget https://ftp.gnu.org/gnu/make/make-4.3.tar.gz, build and install it and add /usr/local/bin to the PATH.
@@ -17,11 +20,13 @@ $> sudo -E Scripts/enter-virtual-system.sh
 $> /tools/bin/bash /42-ft_linux/Scripts/create-essential-files.sh
 $> exit
 $> sudo -E Scripts/enter-virtual-system.sh
-$> sudo -E Scripts/build-system-packages.sh
+$> cd /42-ft_linux
+$> Scripts/build-system-packages.sh
 ```
 ### Upon reboot
 Depending on your advancement in the steps above:
 ```
 $> sudo -E Scripts/mount-filesystems.h
+$> sudo -E Scripts/prepare-virtual-system.h
 $> sudo -E Scripts/enter-virtual-system.sh
 ```

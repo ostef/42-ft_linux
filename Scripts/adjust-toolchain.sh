@@ -18,7 +18,7 @@ gcc -dumpspecs | sed -e 's@/tools@@g'                   \
 # Sanity check
 echo 'int main(){}' > dummy.c
 cc dummy.c -v -Wl,--verbose &> dummy.log || exit 1
-readelf -l a.out | grep ': /lib' || exit 1
+readelf -l a.out | grep ': /lib64/ld-linux-x86-64.so.2' || exit 1
 
 # @Todo: automatically check the output
 
