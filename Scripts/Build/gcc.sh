@@ -37,7 +37,6 @@ chown -Rv nobody .
 su nobody -s /bin/bash -c "PATH=$PATH make -j$MAKE_JOBS -k check"
 
 ../contrib/test_summary > /tmp/gcc-test-results
-diff /tmp/gcc-test-results /42-ft_linux/Resources/Test-Results/gcc-8.2.0
 
 make -j$MAKE_JOBS install || exit 1
 

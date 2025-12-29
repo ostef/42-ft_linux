@@ -42,4 +42,21 @@ Scripts/Build/bash.sh       || exit 1
 Scripts/Build/libtool.sh    || exit 1
 Scripts/Build/gdbm.sh       || exit 1
 Scripts/Build/gperf.sh      || exit 1
+Scripts/Build/expat.sh      || exit 1
+Scripts/Build/inetutils.sh  || exit 1
+Scripts/Build/perl.sh       || exit 1
+Scripts/Build/xml-parser.sh || exit 1
+Scripts/Build/intltool.sh   || exit 1
+Scripts/Build/autoconf.sh   || exit 1
+Scripts/Build/automake.sh   || exit 1
+Scripts/Build/xz.sh         || exit 1
+Scripts/Build/kmod.sh       || exit 1
+Scripts/Build/gettext.sh    || exit 1
+Scripts/Build/libelf.sh     || exit 1
+Scripts/Build/libffi.sh     || exit 1
+Scripts/Build/openssl.sh    || exit 1
+Scripts/Build/python.sh     || exit 1
+Scripts/Build/ninja.sh      || exit 1
+Scripts/Build/meson.sh      || exit 1
+Scripts/Build/coreutils.sh  || exit 1
 
