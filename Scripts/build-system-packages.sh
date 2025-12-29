@@ -28,3 +28,18 @@ Scripts/Build/attr.sh       || exit 1
 Scripts/Build/acl.sh        || exit 1
 Scripts/Build/libcap.sh     || exit 1
 Scripts/Build/sed.sh        || exit 1
+Scripts/Build/psmisc.sh     || exit 1
+Scripts/Build/iana-etc.sh   || exit 1
+Scripts/Build/bison.sh      || exit 1
+Scripts/Build/flex.sh       || exit 1
+Scripts/Build/grep.sh       || exit 1
+Scripts/Build/bash.sh       || exit 1
+
+# At this point, we could use the newly built bash (and in the LFS book this is what they do)
+# but this means we need to make a break in the build process, which I don't like
+# I think it's fine to use /tools/bash
+
+Scripts/Build/libtool.sh    || exit 1
+Scripts/Build/gdbm.sh       || exit 1
+Scripts/Build/gperf.sh      || exit 1
+
