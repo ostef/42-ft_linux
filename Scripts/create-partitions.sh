@@ -1,5 +1,11 @@
 #!/bin/sh
-fdisk /dev/sdb << "END"
+
+if [ "$(echo $LFS_DISK)" = "" ]; then
+	echo "ERROR: \$LFS_DISK is not set"
+	exit 1
+fi
+
+fdisk /dev/$LFS_DISK << "END"
 g
 n
 

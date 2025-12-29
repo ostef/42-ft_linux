@@ -11,6 +11,11 @@ if [ "$(echo $LFS)" = "" ]; then
 	exit 1
 fi
 
-mount --mkdir /dev/sdb2 $LFS
-mount --mkdir /dev/sdb1 $LFS/boot
-swapon -v /dev/sdb3
+if [ "$(echo $LFS_DISK)" = "" ]; then
+	echo "ERROR: \$LFS_DISK is not set"
+	exit 1
+fi
+
+mount --mkdir /dev/"$LFS_DISK"2 $LFS
+mount --mkdir /dev/"$LFS_DISK"1 $LFS/boot
+swapon -v /dev/"$LFS_DISK"3
