@@ -25,7 +25,6 @@ $> exit
 $> sudo -E Scripts/enter-virtual-system.sh
 $> cd /42-ft_linux
 $> Scripts/build-system-packages.sh
-$> Scripts/build-bootscripts.sh
 $> Scripts/clean-up.sh
 $> exit
 $> sudo -E Scripts/enter-final-virtual-system.sh

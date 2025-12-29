@@ -78,3 +78,5 @@ Scripts/Build/e2fsprogs.sh   || exit 1
 Scripts/Build/sysklogd.sh    || exit 1
 Scripts/Build/sysvinit.sh    || exit 1
 Scripts/Build/eudev.sh       || exit 1
+
+Scripts/Build/bootscripts.sh || exit 1
