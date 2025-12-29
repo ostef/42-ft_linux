@@ -22,11 +22,14 @@ $> exit
 $> sudo -E Scripts/enter-virtual-system.sh
 $> cd /42-ft_linux
 $> Scripts/build-system-packages.sh
+$> Scripts/clean-up.sh
+$> exit
+$> sudo -E Scripts/enter-final-virtual-system.sh
 ```
 ### Upon reboot
 Depending on your advancement in the steps above:
 ```
 $> sudo -E Scripts/mount-filesystems.h
 $> sudo -E Scripts/prepare-virtual-system.h
-$> sudo -E Scripts/enter-virtual-system.sh
+$> sudo -E Scripts/enter-{final}-virtual-system.sh # Depending on whether all system packages have been built or not
 ```
