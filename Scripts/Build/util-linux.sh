@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo "Building Utils-linux"
+echo "Building Util-linux"
 
 pushd /sources
 
