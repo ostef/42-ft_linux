@@ -4,9 +4,9 @@ echo "Building Vim"
 
 pushd /sources
 
-rm -rf vim-8.1
+rm -rf vim81
 tar -xf vim-8.1.tar.bz2
-cd vim-8.1
+cd vim81
 
 echo '#define SYS_VIMRC_FILE "/etc/vimrc"' >> src/feature.h
 
@@ -47,6 +47,6 @@ endif
 EOF
 
 cd ..
-rm -rf vim-8.1
+rm -rf vim81
 
 popd

@@ -75,3 +75,7 @@ Scripts/Build/texinfo.sh     || exit 1
 Scripts/Build/vim.sh         || exit 1
 Scripts/Build/procps-ng.sh   || exit 1
 Scripts/Build/util-linux.sh  || exit 1
+Scripts/Build/e2fsprogs.sh   || exit 1
+Scripts/Build/sysklogd.sh    || exit 1
+Scripts/Build/sysvinit.sh    || exit 1
+Scripts/Build/eudev.sh       || exit 1
