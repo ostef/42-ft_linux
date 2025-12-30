@@ -17,23 +17,20 @@ EOF
 cat > /etc/resolv.conf << "EOF"
 # Begin /etc/resolv.conf
 
-domain <Your Domain Name>
 nameserver 8.8.8.8
 nameserver 8.8.4.4
 
 # End /etc/resolv.conf
 EOF
 
-echo "<lfs>" > /etc/hostname
+echo "soumanso" > /etc/hostname
 
 # Hosts
 cat > /etc/hosts << "EOF"
 # Begin /etc/hosts
 
-127.0.0.1    localhost
-127.0.1.1    <FQDN> <HOSTNAME>
-<192.168.1.1> <FQDN> <HOSTNAME> [alias1] [alias2 ...]
-::1          localhost ip6-localhost ip6-loopback
+127.0.0.1    soumanso localhost
+::1          soumanso localhost ip6-localhost ip6-loopback
 ff02::1      ip6-allnodes
 ff02::2      ip6-allrouters
 
@@ -152,11 +149,17 @@ EOF
 # @Todo: replace <xxx> <yyy> and <fff>
 cat > /etc/fstab << "EOF"
 # Begin /etc/fstab
+#
+# Use 'blkid' to print the universally unique identifier for a
+# device; this may be used with UUID= as a more robust way to name devices
+# that works even if disks are added and removed. See fstab(5).
+#
 
 # file-system   mount-point type        options                 dump    fsck
 #                                                                       order
-/dev/<xxx>      /           <fff>       defaults                1       1
-/dev/<yyy>      swap        swap        pri=1                   0       0
+UUID=806e3ecc-eae3-4f32-a6f7-2eb6c9baa48c      /           ext4        defaults                1       1
+UUID=9c8289e5-5c4b-4e8b-b356-b3e677a0f54e      swap        swap        pri=1                   0       0
+UUID=4E5A-D6E5  /boot       vfat        umask=0077              0       1
 proc            /proc       proc        nosuid,noexec,nodev     0       0
 sysfs           /sys        sysfs       nosuid,noexec,nodev     0       0
 devpts          /dev/pts    devpts      gid=5,mode=620          0       0
