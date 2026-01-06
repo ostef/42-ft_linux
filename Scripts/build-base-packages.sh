@@ -5,11 +5,11 @@ if [ "$(echo $MAKE_JOBS)" = "" ]; then
 	exit 1
 fi
 
-# Scripts/Base-Packages/linux-api-headers.sh || exit 1
-# Scripts/Base-Packages/man-pages.sh         || exit 1
-# Scripts/Base-Packages/glibc.sh             || exit 1
+Scripts/Base-Packages/linux-api-headers.sh || exit 1
+Scripts/Base-Packages/man-pages.sh         || exit 1
+Scripts/Base-Packages/glibc.sh             || exit 1
 
-# Scripts/adjust-toolchain.sh || exit 1
+Scripts/adjust-toolchain.sh || exit 1
 
 Scripts/Base-Packages/zlib.sh       || exit 1
 Scripts/Base-Packages/file.sh       || exit 1
