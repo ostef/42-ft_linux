@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # This script is executed after having installed the Linux API headers,
 # Man pages and Glibc packages on the final system

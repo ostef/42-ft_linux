@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Network configuration for my network card. Yours may be different/you might have more than one
 # Do $> bash /lib/udev/init-net-rules.sh then $> cat /etc/udev/rules.d/70-persistent-net.rules

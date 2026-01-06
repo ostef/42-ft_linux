@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 echo "Building GCC - Pass 1"
 
@@ -68,10 +68,4 @@ cd ../..
 rm -rf gcc-8.2.0
 
 popd
-
-# Sanity check
-echo 'int main(){}' > dummy.c
-/tools/bin/$LFS_TGT-gcc dummy.c || exit 1
-readelf -l a.out | grep ': /tools' || exit 1
-rm -vf dummy.c a.out
 

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [ "$(echo $LFS_DISK)" = "" ]; then
 	echo "ERROR: \$LFS_DISK is not set"

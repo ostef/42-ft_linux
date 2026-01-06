@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Create FHS compliant standard directories
 mkdir -pv /{bin,boot,etc/{opt,sysconfig},home,lib/firmware,mnt,opt}

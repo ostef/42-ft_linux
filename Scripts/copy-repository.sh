@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # This script is used to copy over the contents of this repository over the LFS when in chroot jail
 # This script must be executed from outside the jail

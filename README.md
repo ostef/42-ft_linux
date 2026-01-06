@@ -17,6 +17,7 @@ There are additional packages that are downloaded and built alongside the base L
 $> export LFS_USER=??
 $> export LFS_DISK=sd??
 $> sudo -E Scripts/prepare-system-files.sh
+$> source ~/.bashrc
 $> sudo -E Scripts/download-packages.sh
 $> sudo -E Scripts/download-additional-packages.sh
 $> Scripts/build-temp-packages.sh

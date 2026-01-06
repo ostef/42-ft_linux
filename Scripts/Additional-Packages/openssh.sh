@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 echo "Building OpenSSH"
 
@@ -33,7 +33,7 @@ install -v -m755 -d /usr/share/doc/openssh-7.9p1
 install -v -m644    INSTALL LICENCE OVERVIEW README* /usr/share/doc/openssh-7.9p1
 
 cat >/etc/rc.d/init.d/sshd << "EOF"
-#!/bin/sh
+#!/bin/bash
 ########################################################################
 # Begin sshd
 #

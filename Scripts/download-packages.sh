@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 rm -rf $LFS/sources/*
 wget --input-file=Resources/wget-list --continue --directory-prefix=$LFS/sources

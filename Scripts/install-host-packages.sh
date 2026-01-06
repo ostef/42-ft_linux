@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Packages to install on a fresh Debian 13 install
 # More packages might need to be installed on other
@@ -25,5 +25,7 @@ make install || exit 1
 cd ..
 
 rm -rf make-4.3
+
+ln -vfs /usr/local/bin/make /bin/make
 
 popd

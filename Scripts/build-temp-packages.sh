@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Build temporary system tools
 
@@ -6,6 +6,11 @@ if [ "$EUID" -eq 0 ]
 then
     echo "ERROR: Do not run as root!"
     exit 1
+fi
+
+if [ "$(echo $MAKE_JOBS)" = "" ]; then
+	echo "ERROR: \$MAKE_JOBS is not set"
+	exit 1
 fi
 
 # Total build time is 42.7 SBU

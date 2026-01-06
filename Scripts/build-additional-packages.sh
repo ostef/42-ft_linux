@@ -1,9 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 
-# Scripts/Additional-Packages/nettle.sh  || exit 1
-# Scripts/Additional-Packages/libtasn.sh || exit 1
-# Scripts/Additional-Packages/p11-kit.sh || exit 1
-# Scripts/Additional-Packages/unbound.sh || exit 1
-# Scripts/Additional-Packages/gnutls.sh  || exit 1
+if [ "$(echo $MAKE_JOBS)" = "" ]; then
+	echo "ERROR: \$MAKE_JOBS is not set"
+	exit 1
+fi
+
 Scripts/Additional-Packages/wget.sh    || exit 1
-Scripts/Additional-Packages/openssl.sh || exit 1
+Scripts/Additional-Packages/openssh.sh || exit 1

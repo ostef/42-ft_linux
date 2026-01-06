@@ -1,10 +1,15 @@
-#!/bin/sh
+#!/bin/bash
 
-Scripts/Base-Packages/linux-api-headers.sh || exit 1
-Scripts/Base-Packages/man-pages.sh         || exit 1
-Scripts/Base-Packages/glibc.sh             || exit 1
+if [ "$(echo $MAKE_JOBS)" = "" ]; then
+	echo "ERROR: \$MAKE_JOBS is not set"
+	exit 1
+fi
 
-Scripts/ajust-toolchain.sh || exit 1
+# Scripts/Base-Packages/linux-api-headers.sh || exit 1
+# Scripts/Base-Packages/man-pages.sh         || exit 1
+# Scripts/Base-Packages/glibc.sh             || exit 1
+
+# Scripts/adjust-toolchain.sh || exit 1
 
 Scripts/Base-Packages/zlib.sh       || exit 1
 Scripts/Base-Packages/file.sh       || exit 1

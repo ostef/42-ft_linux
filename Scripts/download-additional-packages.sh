@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 mkdir -pv $LFS/sources/additional
 rm -rf $LFS/sources/additional/*
