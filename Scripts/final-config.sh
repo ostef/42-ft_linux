@@ -1,5 +1,21 @@
 #!/bin/bash
 
+
+if [ "$(echo $LFS_BOOT_UUID)" = "" ]; then
+	echo "ERROR: \$LFS_BOOT_UUID is not set"
+	exit 1
+fi
+
+if [ "$(echo $LFS_ROOT_UUID)" = "" ]; then
+	echo "ERROR: \$LFS_ROOT_UUID is not set"
+	exit 1
+fi
+
+if [ "$(echo $LFS_SWAP_UUID)" = "" ]; then
+	echo "ERROR: \$LFS_SWAP_UUID is not set"
+	exit 1
+fi
+
 # Network configuration for my network card. Yours may be different/you might have more than one
 # Do $> bash /lib/udev/init-net-rules.sh then $> cat /etc/udev/rules.d/70-persistent-net.rules
 # to know what network cards have been assigned to what names
@@ -147,7 +163,7 @@ EOF
 
 # File system mount configuration upon boot
 # @Todo: replace <xxx> <yyy> and <fff>
-cat > /etc/fstab << "EOF"
+cat > /etc/fstab << EOF
 # Begin /etc/fstab
 #
 # Use 'blkid' to print the universally unique identifier for a
@@ -157,9 +173,9 @@ cat > /etc/fstab << "EOF"
 
 # file-system   mount-point type        options                 dump    fsck
 #                                                                       order
-UUID=806e3ecc-eae3-4f32-a6f7-2eb6c9baa48c      /           ext4        defaults                1       1
-UUID=9c8289e5-5c4b-4e8b-b356-b3e677a0f54e      swap        swap        pri=1                   0       0
-UUID=4E5A-D6E5  /boot       vfat        umask=0077              0       1
+UUID=$LFS_ROOT_UUID      /           ext4        defaults                1       1
+UUID=$LFS_SWAP_UUID      swap        swap        pri=1                   0       0
+UUID=$LFS_BOOT_UUID  /boot       vfat        umask=0077              0       1
 proc            /proc       proc        nosuid,noexec,nodev     0       0
 sysfs           /sys        sysfs       nosuid,noexec,nodev     0       0
 devpts          /dev/pts    devpts      gid=5,mode=620          0       0
@@ -169,3 +185,28 @@ devtmpfs        /dev        devtmpfs    mode=0755,nosuid        0       0
 # End /etc/fstab
 EOF
 
+install -v -m755 -d /etc/modprobe.d
+cat > /etc/modprobe.d/usb.conf << "EOF"
+# Begin /etc/modprobe.d/usb.conf
+
+install ohci_hcd /sbin/modprobe ehci_hcd ; /sbin/modprobe -i ohci_hcd ; true
+install uhci_hcd /sbin/modprobe ehci_hcd ; /sbin/modprobe -i uhci_hcd ; true
+
+# End /etc/modprobe.d/usb.conf
+EOF
+
+cat > /boot/grub/grub.cfg << "EOF"
+# Begin /boot/grub/grub.cfg
+
+set default=0
+set timeout=5
+
+insmod ext2
+set root=(hd1,1)
+
+menuentry "GNU/Linux, Linux 4.20.12-soumanso" {
+    linux vmlinuz-4.20.12-soumanso root=PARTUUID=7bbfffc2-f7ff-4b79-854b-6aaa90afbd4a ro
+}
+EOF
+
+echo 8.4 > /etc/lfs-release

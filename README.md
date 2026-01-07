@@ -35,6 +35,9 @@ $> sudo -E Scripts/enter-final-virtual-system.sh
 $> /42-ft_linux/final-config.sh
 $> Scripts/build-additional-packages.sh
 ```
+For the final steps of installing the Linux kernel and GRUB, follow the LFS book.
+When building the kernel make sure to copy the source to /usr/src/ and to also change the version string in `make menuconfig` under `General Setup -> Local version - append to kernel release`.
+
 ### Upon reboot
 Depending on your advancement in the steps above:
 ```
@@ -44,3 +47,10 @@ $> sudo -E Scripts/mount-filesystems.sh
 $> sudo -E Scripts/prepare-virtual-system.sh
 $> sudo -E Scripts/enter-{final}-virtual-system.sh # Depending on whether all system packages have been built or not
 ```
+
+### Installing GRUB
+```
+$> sudo apt install grub-efi
+$> sudo grub-install --target=x86_64-efi /dev/$LFS_DISK --efi-directory=$LFS/boot --boot-directory=$LFS/boot --removable
+```
+
